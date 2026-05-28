@@ -1,0 +1,137 @@
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('fonts/HelveticaNeue-Bold.woff2') format('woff2')
+}
+
+.main-image-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 100px;
+    margin: 60px;
+    transition:ease-in-out 2s;
+    z-index: 0;
+}
+
+.segment-div {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    transition:ease-in-out 2s;
+    z-index: 0;
+}
+.segment-div-nz {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    transition: ease-in-out 2s;
+}
+
+.segment-div:hover .img {
+    filter: blur(4px);
+    transform: scale(110%);
+    opacity: 50%;
+}
+.segment-div:hover .hltext1 {
+    opacity: 100;
+}
+.segment-div:hover .hltext2 {
+    opacity: 100;
+}
+
+.img {
+    float: right;
+    width:  600px;
+    height: 400px;
+    background-size: cover;
+    border-radius: 25px;
+    transition: ease-in-out 0.3s;
+}
+
+.logos {
+    width: 300px;
+    margin: auto;
+    display: block;
+}
+
+.hltext1 {
+    font-family: 'Helvetica Neue';
+    color: white;
+    position: absolute;
+    /* Styles for the top item */
+    z-index: 1; /* Ensure the top item appears above the bottom item */
+    transform: translate(-50%, -200%);
+    top: 50%;
+    left: 50%;
+    transition: ease-in-out 0.3s;
+    opacity: 0;
+    text-align: center;
+}
+.hltext2 {
+    font-family: 'Helvetica Neue';
+    font-size: 20px;
+    color: white;
+    position: absolute;
+    /* Styles for the top item */
+    z-index: 1; /* Ensure the top item appears above the bottom item */
+    transform: translate(-50%, -20%);
+    top: 50%;
+    left: 50%;
+    transition: ease-in-out 0.3s;
+    opacity: 0;
+    text-align: center;
+}
+
+#main-body {
+    background-color: black;
+}
+
+.title-text {
+    color: white;
+    font-family: 'Helvetica Neue';
+    font-size: 40px;
+    text-align: center;
+}
+
+.header-text {
+    color: white;
+    font-family: 'Helvetica Neue';
+    text-align: center;
+}
+
+.big-text {
+    color: white;
+    font-family: 'Helvetica Neue';
+    text-align: left;
+    padding-left: 30px;
+    font-size: 60px;
+    font-style: bold;
+}
+
+.header {
+    z-index: 1;
+    background-color: black;
+}
+
+.sub-text {
+    color: white;
+    font-family: 'Helvetica Neue';
+    font-size: 20px;
+    text-align: center;
+}
+
+/* The sticky class is added to the header with JS when it reaches its scroll position */
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%
+  }
+  
+  /* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
+  .sticky + .content {
+    padding-top: 102px;
+  }
