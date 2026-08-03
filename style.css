@@ -28,7 +28,15 @@
     position: relative;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    min-width: 0;
     transition: ease-in-out 2s;
+}
+
+.segment-div-nz > * {
+    min-width: 0;
+    max-width: 100%;
 }
 
 .segment-div:hover .img {
