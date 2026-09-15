@@ -1,18 +1,123 @@
 @font-face {
     font-family: 'Helvetica Neue';
-    src: url('fonts/HelveticaNeue-Bold.woff2') format('woff2')
+    src: url('fonts/HelveticaNeue-Regular.woff2') format('woff2');
+    font-weight: 400;
 }
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('fonts/HelveticaNeue-Medium.woff2') format('woff2');
+    font-weight: 500;
+}
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('fonts/HelveticaNeue-Bold.woff2') format('woff2');
+    font-weight: 700;
+}
+
+:root {
+    --bg: #000;
+    --fg: #fff;
+    --fg-muted: #cfcfcf;
+    --card-bg: #111;
+    --card-shadow: rgba(255, 255, 255, 0.08);
+    --transition-fast: 0.25s ease-in-out;
+    --transition-slow: 0.6s ease-in-out;
+}
+
+:root[data-theme="light"] {
+    --bg: #fdfdfd;
+    --fg: #111;
+    --fg-muted: #444;
+    --card-bg: #f2f2f2;
+    --card-shadow: rgba(0, 0, 0, 0.12);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    background-color: var(--bg);
+}
+
+body {
+    margin: 0;
+    background-color: var(--bg);
+    font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+/* ---------- Header / nav ---------- */
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    border-bottom: 2px solid var(--fg);
+    background-color: var(--bg);
+    padding: 12px 20px;
+    transition: background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.site-header a.sub-text {
+    text-align: left;
+}
+
+.theme-toggle {
+    font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    color: var(--fg);
+    background: transparent;
+    border: 1px solid var(--fg);
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+    background-color: var(--fg);
+    color: var(--bg);
+}
+
+/* ---------- Focus visibility (keyboard users) ---------- */
+
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid var(--fg);
+    outline-offset: 3px;
+}
+
+a {
+    color: inherit;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ---------- Layout ---------- */
 
 .main-image-body {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
     flex-wrap: wrap;
-    gap: 100px;
-    margin: 60px;
-    transition:ease-in-out 2s;
-    z-index: 0;
+    gap: 60px;
+    margin: 60px 20px;
 }
 
 .segment-div {
@@ -20,126 +125,175 @@
     position: relative;
     justify-content: center;
     align-items: center;
-    transition:ease-in-out 2s;
-    z-index: 0;
-}
-.segment-div-nz {
-    display: flex;
-    position: relative;
-    justify-content: center;
-    align-items: center;
     flex-wrap: wrap;
     box-sizing: border-box;
     min-width: 0;
-    transition: ease-in-out 2s;
+    transition: transform var(--transition-slow);
 }
 
-.segment-div-nz > * {
+.segment-div > * {
     min-width: 0;
     max-width: 100%;
 }
 
-.segment-div:hover .img {
+.segment-div:hover .img,
+.segment-div:focus-within .img,
+.segment-div:hover .profile-img,
+.segment-div:focus-within .profile-img {
     filter: blur(4px);
-    transform: scale(110%);
-    opacity: 50%;
+    transform: scale(1.1);
+    opacity: 0.5;
 }
-.segment-div:hover .hltext1 {
-    opacity: 100;
+
+/* ---------- Project cards ---------- */
+
+.project-card {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: min(600px, 90vw);
+    background-color: var(--card-bg);
+    border-radius: 20px;
+    padding: 24px;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
 }
-.segment-div:hover .hltext2 {
-    opacity: 100;
+
+.project-card:hover,
+.project-card:focus-within {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px var(--card-shadow);
 }
+
+.project-card .project-copy {
+    flex: 1 1 220px;
+    min-width: 0;
+}
+
+/* ---------- Images ---------- */
 
 .img {
-    float: right;
-    width:  600px;
-    height: 400px;
-    background-size: cover;
-    border-radius: 25px;
-    transition: ease-in-out 0.3s;
-}
-
-.logos {
-    width: 300px;
-    margin: auto;
     display: block;
+    width: 100%;
+    max-width: 400px;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 20px;
+    transition: filter var(--transition-fast), transform var(--transition-fast), opacity var(--transition-fast);
 }
 
-.hltext1 {
-    font-family: 'Helvetica Neue';
-    color: white;
-    position: absolute;
-    /* Styles for the top item */
-    z-index: 1; /* Ensure the top item appears above the bottom item */
-    transform: translate(-50%, -200%);
-    top: 50%;
-    left: 50%;
-    transition: ease-in-out 0.3s;
-    opacity: 0;
-    text-align: center;
-}
-.hltext2 {
-    font-family: 'Helvetica Neue';
-    font-size: 20px;
-    color: white;
-    position: absolute;
-    /* Styles for the top item */
-    z-index: 1; /* Ensure the top item appears above the bottom item */
-    transform: translate(-50%, -20%);
-    top: 50%;
-    left: 50%;
-    transition: ease-in-out 0.3s;
-    opacity: 0;
-    text-align: center;
+.profile-img {
+    width: 100%;
+    max-width: 320px;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 20px;
+    transition: filter var(--transition-fast), transform var(--transition-fast), opacity var(--transition-fast);
 }
 
-#main-body {
-    background-color: black;
-}
-
-.title-text {
-    color: white;
-    font-family: 'Helvetica Neue';
-    font-size: 40px;
-    text-align: center;
-}
+/* ---------- Typography ---------- */
 
 .header-text {
-    color: white;
-    font-family: 'Helvetica Neue';
+    color: var(--fg);
+    font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font-weight: 700;
     text-align: center;
+    transition: color var(--transition-fast);
 }
 
 .big-text {
-    color: white;
-    font-family: 'Helvetica Neue';
+    color: var(--fg);
+    font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
     text-align: left;
     padding-left: 30px;
     font-size: 60px;
-    font-style: bold;
-}
-
-.header {
-    z-index: 1;
-    background-color: black;
+    font-weight: 700;
+    transition: color var(--transition-fast);
 }
 
 .sub-text {
-    color: white;
-    font-family: 'Helvetica Neue';
+    color: var(--fg-muted);
+    font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font-weight: 400;
     font-size: 20px;
     text-align: center;
+    transition: color var(--transition-fast);
 }
 
-/* The sticky class is added to the header with JS when it reaches its scroll position */
-.sticky {
-    position: fixed;
-    top: 0;
-    width: 100%
-  }
-  
-  /* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
-  .sticky + .content {
-    padding-top: 102px;
-  }
+/* ---------- Quick links & contact ---------- */
+
+.link-list {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.link-list li {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
+    border-bottom: 1px solid var(--card-bg);
+    padding-bottom: 8px;
+}
+
+.contact-list {
+    list-style: none;
+    margin: 40px auto;
+    padding: 0;
+    max-width: 500px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.contact-list img {
+    width: 60px;
+    height: 60px;
+    transition: transform var(--transition-fast);
+}
+
+.contact-list a:hover img,
+.contact-list a:focus-visible img {
+    transform: scale(1.15);
+}
+
+/* ---------- Motion & responsiveness ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}
+
+@media (max-width: 700px) {
+    .big-text {
+        font-size: 40px;
+        padding-left: 16px;
+    }
+
+    .main-image-body {
+        margin: 30px 12px;
+        gap: 30px;
+    }
+
+    .project-card {
+        flex-direction: column;
+        width: 100%;
+        padding: 16px;
+    }
+
+    .site-header {
+        padding: 10px 12px;
+    }
+}
