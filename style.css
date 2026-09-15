@@ -342,7 +342,7 @@ a {
     flex-wrap: wrap;
     gap: 24px;
     width: 100%;
-    max-width: 900px;
+    max-width: 1100px;
     max-height: 90vh;
     overflow-y: auto;
     background-color: var(--card-bg);
@@ -375,7 +375,7 @@ a {
 }
 
 .modal-carousel {
-    flex: 1 1 320px;
+    flex: 1 1 460px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -384,8 +384,8 @@ a {
 
 .modal-img {
     width: 100%;
-    max-width: 400px;
-    height: 300px;
+    max-width: 560px;
+    height: 420px;
     object-fit: cover;
     border-radius: 16px;
 }
@@ -458,6 +458,6 @@ a {
     }
 
     .modal-img {
-        height: 220px;
+        height: 260px;
     }
 }
