@@ -62,8 +62,29 @@ body {
     transition: background-color var(--transition-fast), border-color var(--transition-fast);
 }
 
-.site-header a.sub-text {
+.terminal-link {
+    font-family: 'Courier New', Consolas, Menlo, monospace;
+    font-size: 18px;
+    color: var(--fg);
+    text-decoration: none;
     text-align: left;
+}
+
+.terminal-link:hover,
+.terminal-link:focus-visible {
+    text-decoration: underline;
+}
+
+.cursor {
+    display: inline-block;
+    margin-left: 2px;
+    animation: blink 1s steps(1, end) infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
 }
 
 .theme-toggle {
@@ -136,15 +157,6 @@ a {
     max-width: 100%;
 }
 
-.segment-div:hover .img,
-.segment-div:focus-within .img,
-.segment-div:hover .profile-img,
-.segment-div:focus-within .profile-img {
-    filter: blur(4px);
-    transform: scale(1.1);
-    opacity: 0.5;
-}
-
 /* ---------- Project cards ---------- */
 
 .project-card {
@@ -158,6 +170,7 @@ a {
     background-color: var(--card-bg);
     border-radius: 20px;
     padding: 24px;
+    cursor: pointer;
     transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
 }
 
@@ -167,9 +180,33 @@ a {
     box-shadow: 0 12px 30px var(--card-shadow);
 }
 
+.project-card:active {
+    transform: scale(0.97);
+}
+
 .project-card .project-copy {
     flex: 1 1 220px;
     min-width: 0;
+}
+
+.project-view-btn {
+    display: inline-block;
+    margin-top: 12px;
+    font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    color: var(--fg);
+    background: transparent;
+    border: 1px solid var(--fg);
+    border-radius: 6px;
+    padding: 6px 14px;
+    cursor: pointer;
+    transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.project-view-btn:hover,
+.project-view-btn:focus-visible {
+    background-color: var(--fg);
+    color: var(--bg);
 }
 
 /* ---------- Images ---------- */
@@ -265,6 +302,107 @@ a {
     transform: scale(1.15);
 }
 
+/* ---------- Project detail modal ---------- */
+
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.75);
+    padding: 20px;
+    z-index: 100;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.modal-backdrop:not([hidden]) {
+    display: flex;
+}
+
+.modal-backdrop.is-open {
+    opacity: 1;
+}
+
+.modal {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    width: 100%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background-color: var(--card-bg);
+    border-radius: 20px;
+    padding: 30px;
+    transform: scale(0.94);
+    transition: transform var(--transition-fast);
+}
+
+.modal-backdrop.is-open .modal {
+    transform: scale(1);
+}
+
+.modal-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    background: transparent;
+    border: none;
+    color: var(--fg);
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+    transition: opacity var(--transition-fast);
+}
+
+.modal-close:hover,
+.modal-close:focus-visible {
+    opacity: 0.6;
+}
+
+.modal-carousel {
+    flex: 1 1 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.modal-img {
+    width: 100%;
+    max-width: 400px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+.modal-nav {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1px solid var(--fg);
+    color: var(--fg);
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.modal-nav:hover,
+.modal-nav:focus-visible {
+    background-color: var(--fg);
+    color: var(--bg);
+}
+
+.modal-copy {
+    flex: 1 1 280px;
+    min-width: 0;
+}
+
 /* ---------- Motion & responsiveness ---------- */
 
 @media (prefers-reduced-motion: reduce) {
@@ -301,5 +439,14 @@ a {
         flex-direction: column;
         flex-wrap: wrap;
         align-items: flex-start;
+    }
+
+    .modal {
+        padding: 20px;
+        gap: 16px;
+    }
+
+    .modal-img {
+        height: 220px;
     }
 }
