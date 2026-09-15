@@ -241,12 +241,11 @@ a {
 }
 
 .name-suffix {
-    margin-left: 0.15em;
-    font-size: 0.65em;
+    margin-left: 0.2em;
+    font-size: 0.85em;
     font-weight: 400;
     font-style: italic;
-    color: var(--fg-muted);
-    letter-spacing: 0.02em;
+    color: var(--fg);
 }
 
 .big-text {
