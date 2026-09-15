@@ -178,7 +178,12 @@
                 <button type="button" class="modal-close" id="modal-close" aria-label="Close">&times;</button>
                 <div class="modal-carousel">
                     <button type="button" class="modal-nav modal-prev" id="modal-prev" aria-label="Previous photo">&#8592;</button>
-                    <img class="modal-img" id="modal-img" src="" alt="">
+                    <div class="modal-img-wrap">
+                        <img class="modal-img" id="modal-img" src="" alt="">
+                        <button type="button" class="modal-zoom-btn" id="modal-zoom" aria-pressed="false" aria-label="View full size image">
+                            <span aria-hidden="true">&#10530;</span>
+                        </button>
+                    </div>
                     <button type="button" class="modal-nav modal-next" id="modal-next" aria-label="Next photo">&#8594;</button>
                 </div>
                 <div class="modal-copy" aria-live="polite">
@@ -232,15 +237,19 @@
                 );
 
                 var modal = document.getElementById('project-modal');
+                var modalBox = modal.querySelector('.modal');
                 var modalImg = document.getElementById('modal-img');
                 var modalTitle = document.getElementById('modal-title');
                 var modalDetail = document.getElementById('modal-detail');
                 var closeBtn = document.getElementById('modal-close');
                 var prevBtn = document.getElementById('modal-prev');
                 var nextBtn = document.getElementById('modal-next');
+                var zoomBtn = document.getElementById('modal-zoom');
+                var zoomBtnIcon = zoomBtn.querySelector('span');
 
                 var currentProject = null;
                 var currentImageIndex = 0;
+                var isZoomed = false;
                 var lastFocused = null;
 
                 // Each card's main <img> is photo 1. Extra photos of the SAME project
@@ -288,11 +297,13 @@
                     var all = Array.prototype.slice.call(
                         modal.querySelectorAll('button, [href], [tabindex]:not([tabindex="-1"])')
                     );
-                    // Exclude hidden nav buttons (single-photo projects) — a hidden element can
-                    // never become document.activeElement, so counting it as the trap boundary
-                    // lets Tab walk straight past the modal into the page behind it.
+                    // Exclude anything not actually rendered right now (the hidden attribute on
+                    // nav buttons for single-photo projects, or display:none via .is-zoomed on
+                    // the nav/copy while zoomed) — such an element can never become
+                    // document.activeElement, so counting it as the trap boundary lets Tab walk
+                    // straight past the modal into whatever's behind it.
                     return all.filter(function (el) {
-                        return !el.hidden;
+                        return el.offsetParent !== null;
                     });
                 }
 
@@ -311,9 +322,22 @@
                     }
                 }
 
+                function setZoomed(zoomed) {
+                    isZoomed = zoomed;
+                    modalBox.classList.toggle('is-zoomed', zoomed);
+                    zoomBtn.setAttribute('aria-pressed', zoomed ? 'true' : 'false');
+                    zoomBtn.setAttribute('aria-label', zoomed ? 'Exit full size image' : 'View full size image');
+                    zoomBtnIcon.textContent = zoomed ? '⤡' : '⤢';
+                }
+
                 function onKeydown(event) {
                     if (event.key === 'Escape') {
-                        closeModal();
+                        // Exit full-size zoom first; a second Escape closes the modal itself.
+                        if (isZoomed) {
+                            setZoomed(false);
+                        } else {
+                            closeModal();
+                        }
                     } else if (event.key === 'ArrowRight') {
                         stepImage(1);
                     } else if (event.key === 'ArrowLeft') {
@@ -350,6 +374,7 @@
                     lastFocused = document.activeElement;
                     currentProject = projectData(cards[index]);
                     currentImageIndex = 0;
+                    setZoomed(false);
                     modalTitle.textContent = currentProject.title;
                     modalDetail.textContent = currentProject.detail;
                     renderImage();
@@ -365,6 +390,7 @@
 
                 function closeModal() {
                     inertTargets.forEach(function (el) { el.inert = false; });
+                    setZoomed(false);
                     modal.classList.remove('is-open');
                     document.body.style.overflow = '';
                     document.removeEventListener('keydown', onKeydown);
@@ -392,6 +418,9 @@
                     stepImage(1);
                 });
                 closeBtn.addEventListener('click', closeModal);
+                zoomBtn.addEventListener('click', function () {
+                    setZoomed(!isZoomed);
+                });
                 modal.addEventListener('click', function (event) {
                     if (event.target === modal) {
                         closeModal();
