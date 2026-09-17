@@ -1,190 +1,432 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>miles-p</title>
+        <title>Miles Punch — Mechatronics Engineer &amp; Entertainment Technologist</title>
+        <meta name="description" content="Portfolio of Miles Punch: mechatronics engineering student, NUbots student engineer, and entertainment technology projects spanning theatre lighting, robotics, and electronics.">
+        <meta property="og:title" content="Miles Punch — Portfolio">
+        <meta property="og:description" content="Mechatronics engineering student and entertainment technologist. Theatre lighting controllers, robotics, and custom electronics projects.">
+        <meta property="og:image" content="images/pfp.jpeg">
+        <meta property="og:type" content="website">
+        <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
         <link rel="stylesheet" href="style.css">
+        <script>
+            (function () {
+                try {
+                    if (localStorage.getItem('theme') === 'light') {
+                        document.documentElement.setAttribute('data-theme', 'light');
+                    }
+                } catch (e) { /* storage unavailable, e.g. private browsing */ }
+            })();
+        </script>
     </head>
-
-    <table style="width: 100%;border: 2px solid black;">
-        <tr>
-            <td>
-                <a class="sub-text" style="text-align: left; padding-left: 20px;" href="index.html">miles-p</a>
-            </td>
-            <td>
-                <p title="No light mode for you!" style="color: white; cursor: help; text-align: right; padding-right: 20px;"><u>Switch to light mode</u></p>
-            </td>
-        </tr>
-    </table>
     <body id="main-body">
-        <div>
-            <h1 class="big-text">Who:</h1>
-        </div>
-        <div class="main-image-body">
-            <div class="segment-div" style="width: 45%">
+        <header class="site-header">
+            <a class="terminal-link" href="index.html">&gt; ./miles_punch_portfolio.sh<span class="cursor" aria-hidden="true">&#9608;</span></a>
+            <button type="button" class="theme-toggle" id="theme-toggle" aria-pressed="false">
+                Switch to light mode
+            </button>
+        </header>
+
+        <main>
+            <h1 class="visually-hidden">Miles Punch — Portfolio</h1>
+            <section aria-labelledby="who-heading">
                 <div>
-                    <h1 class="header-text">Miles Punch</h1>
-                    <hr>
-                    <h2 class="sub-text"><em>StudIEAust</em> </h2>
-                    <h2 class="sub-text">Mechatronics Engineering Student, University of Newcastle</h2>
-                    <h2 class="sub-text">NUbots Student Engineer</h2>
-                    <br>
-                    <h2 class="sub-text">Experienced Audio and Lighting Technician <br> Talented and Creative Engineer</h2>
+                    <h2 class="big-text" id="who-heading">Who:</h2>
                 </div>
-            </div>
-            <div class="segment-div-nz">
-                <div class="img" style="background-image:url('images/pfp.jpeg'); width:400px; transform: scale(80%);"></div>
+                <div class="main-image-body">
+                    <div class="segment-div" style="width: 45%">
+                        <div>
+                            <h3 class="header-text name-heading">Miles Punch <span class="name-suffix">StudIEAust</span></h3>
+                            <hr>
+                            <p class="sub-text">Mechatronics Engineering Student, University of Newcastle</p>
+                            <p class="sub-text">NUbots Student Engineer</p>
+                            <br>
+                            <p class="sub-text">Experienced Audio and Lighting Technician <br> Talented and Creative Engineer</p>
+                        </div>
+                    </div>
+                    <div class="segment-div">
+                        <img class="profile-img" src="images/pfp.jpeg" alt="Portrait of Miles Punch">
+                    </div>
+                </div>
+            </section>
+
+            <section aria-labelledby="what-heading">
+                <div>
+                    <h2 class="big-text" id="what-heading">What:</h2>
+                </div>
+                <div class="main-image-body">
+                    <div class="project-card" data-detail="A custom-built lighting controller for theatre lighting control. The project included a micro-controller system, a custom PCB assembly, 240V wiring, test-and-tag certification, and a sturdy codebase.">
+                        <img class="img" src="images/lighting_controller.jpg" alt="Custom theatre lighting controller hardware">
+                        <div class="project-copy">
+                            <h3 class="header-text">Theatre Lighting Controller</h3>
+                            <p class="sub-text">A custom-built lighting controller for theatre lighting control. The project included a micro-controller system, a custom PCB assembly, 240V wiring, test-and-tag certification, and a sturdy codebase.</p>
+                            <button type="button" class="project-view-btn" aria-haspopup="dialog">View details</button>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-detail="My team's Warman Design Challenge entry: a custom aluminium frame robot with a robust control system and subcontroller architecture, designed by mechanical, software, electrical, and mechatronics students." data-images="images/warman_design_2.jpg" data-image-alts="Warman Design and Build Challenge robot, second photo">
+                        <img class="img" src="images/warman_design.jpg" alt="Warman Design and Build Challenge aluminium frame robot">
+                        <div class="project-copy">
+                            <h3 class="header-text">Warman Design and Build Challenge</h3>
+                            <p class="sub-text">My team's Warman Design Challenge entry: a custom aluminium frame robot with a robust control system and subcontroller architecture, designed by mechanical, software, electrical, and mechatronics students.</p>
+                            <button type="button" class="project-view-btn" aria-haspopup="dialog">View details</button>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-detail="An unconventional engineering project for sure - custom lighting solutions for the DIANA: The Musical set. Custom addressable LED strip and bulbs, open-source in-house designed controllers on a redundant network infrastructure.">
+                        <img class="img" src="images/diana_gates.jpg" alt="Custom addressable LED lighting on the DIANA: The Musical set">
+                        <div class="project-copy">
+                            <h3 class="header-text">DIANA Set Electrics</h3>
+                            <p class="sub-text">An unconventional engineering project for sure - custom lighting solutions for the DIANA: The Musical set. Custom addressable LED strip and bulbs, open-source in-house designed controllers on a redundant network infrastructure.</p>
+                            <button type="button" class="project-view-btn" aria-haspopup="dialog">View details</button>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-detail="A custom power supply for the Booster K1 robot. This project included the PCB &quot;interposer&quot; module, and the enclosure power supply.">
+                        <img class="img" src="images/k1_psu.png" alt="Booster K1 robot power supply PCB and enclosure">
+                        <div class="project-copy">
+                            <h3 class="header-text">Booster K1 Power Supply</h3>
+                            <p class="sub-text">A custom power supply for the Booster K1 robot. This project included the PCB "interposer" module, and the enclosure power supply.</p>
+                            <button type="button" class="project-view-btn" aria-haspopup="dialog">View details</button>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-detail="Another interesting and unconventional project for entertainment technology. A fully wireless Hourglass prop which decodes DMX over WiFi and outputs to an addressible LED array. This project was picked up by Core Electronics for an article on Wireless DMX and prop building.">
+                        <img class="img" src="images/hourglass.jpg" alt="Wireless DMX-over-WiFi hourglass theatre prop with addressable LEDs">
+                        <div class="project-copy">
+                            <h3 class="header-text">Hourglass</h3>
+                            <p class="sub-text">Another interesting and unconventional project for entertainment technology. A fully wireless Hourglass prop which decodes DMX over WiFi and outputs to an addressible LED array. This project was picked up by Core Electronics for an article on Wireless DMX and prop building.</p>
+                            <button type="button" class="project-view-btn" aria-haspopup="dialog">View details</button>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-detail="OpenFixtures: my crazy attempt to make an open-source lighting fixture platform. Another interesting entertainment engineering project.">
+                        <img class="img" src="images/open_fixtures.jpg" alt="OpenFixtures open-source lighting fixture hardware">
+                        <div class="project-copy">
+                            <h3 class="header-text">OpenFixtures</h3>
+                            <p class="sub-text">OpenFixtures: my crazy attempt to make an open-source lighting fixture platform. Another interesting entertainment engineering project.</p>
+                            <button type="button" class="project-view-btn" aria-haspopup="dialog">View details</button>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-detail="A fun little project I did during my work at Jaycar Electronics. A cool custom game console - Raspberry Pi based RetroPie gaming system. 3D printed enclosure, and lots of fun!">
+                        <img class="img" src="images/j64.jpg" alt="J64 Raspberry Pi RetroPie game console in a 3D printed enclosure">
+                        <div class="project-copy">
+                            <h3 class="header-text">J64</h3>
+                            <p class="sub-text">A fun little project I did during my work at Jaycar Electronics. A cool custom game console - Raspberry Pi based RetroPie gaming system. 3D printed enclosure, and lots of fun!</p>
+                            <button type="button" class="project-view-btn" aria-haspopup="dialog">View details</button>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-detail="NUsense is the sub-controller for the NUgus soccer robot; the current platform for the University of Newcastle's RoboCup team. While the PCB is not my design, I have been responsible for maintenance and design updates to it.">
+                        <img class="img" src="images/nusense.jpg" alt="NUsense sub-controller PCB for the NUgus soccer robot">
+                        <div class="project-copy">
+                            <h3 class="header-text">NUsense</h3>
+                            <p class="sub-text">NUsense is the sub-controller for the NUgus soccer robot; the current platform for the University of Newcastle's RoboCup team. While the PCB is not my design, I have been responsible for maintenance and design updates to it.</p>
+                            <button type="button" class="project-view-btn" aria-haspopup="dialog">View details</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section aria-labelledby="links-heading">
+                <div>
+                    <h2 class="big-text" id="links-heading">Quick Links:</h2>
+                </div>
+                <ul class="link-list">
+                    <li>
+                        <span class="sub-text">My main website:</span>
+                        <a href="https://punchav.com" target="_blank" rel="noopener"><span class="sub-text"><u>punchav.com</u></span></a>
+                    </li>
+                    <li>
+                        <span class="sub-text">Core Electronics write-up:</span>
+                        <a href="https://core-electronics.com.au/projects/wled-hourglass-theatre-prop/"><span class="sub-text"><u>WLED Hourglass Theatre Prop</u></span></a>
+                    </li>
+                    <li>
+                        <span class="sub-text">GitHub Profile:</span>
+                        <a href="https://github.com/miles-p" target="_blank" rel="noopener"><span class="sub-text"><u>github.com/miles-p</u></span></a>
+                    </li>
+                    <li>
+                        <span class="sub-text">NUbots Information:</span>
+                        <a href="https://www.newcastle.edu.au/college/engineering-science-environment/research/groups/newcastle-robotics-laboratory/nubots" target="_blank" rel="noopener"><span class="sub-text"><u>NUbots</u></span></a>
+                    </li>
+                </ul>
+            </section>
+
+            <section aria-labelledby="contact-heading">
+                <div>
+                    <h2 class="big-text" id="contact-heading">Contact:</h2>
+                </div>
+                <ul class="contact-list">
+                    <li>
+                        <a href="mailto:miles@punchav.com"><img src="images/email.png" alt="Email Miles Punch"></a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/in/miles-punch-87907a259/" target="_blank" rel="noopener"><img src="images/linkedin.png" alt="Miles Punch on LinkedIn"></a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/miles-p" target="_blank" rel="noopener"><img src="images/github.png" alt="Miles Punch on GitHub"></a>
+                    </li>
+                </ul>
+            </section>
+        </main>
+
+        <div class="modal-backdrop" id="project-modal" hidden>
+            <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+                <button type="button" class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+                <div class="modal-carousel">
+                    <button type="button" class="modal-nav modal-prev" id="modal-prev" aria-label="Previous photo">&#8592;</button>
+                    <div class="modal-img-wrap">
+                        <img class="modal-img" id="modal-img" src="" alt="">
+                        <button type="button" class="modal-zoom-btn" id="modal-zoom" aria-pressed="false" aria-label="View full size image">
+                            <span aria-hidden="true">&#10530;</span>
+                        </button>
+                    </div>
+                    <button type="button" class="modal-nav modal-next" id="modal-next" aria-label="Next photo">&#8594;</button>
+                </div>
+                <div class="modal-copy" aria-live="polite">
+                    <h3 id="modal-title" class="header-text"></h3>
+                    <p id="modal-detail" class="sub-text"></p>
+                </div>
             </div>
         </div>
 
-        <div>
-            <h1 class="big-text">What:</h1>
-        </div>
-        <div class="main-image-body">
-            <div class="segment-div-nz" style="width: 40%">
-                <div>
-                    <h1 class="header-text">Theatre Lighting Controller</h1>
-                    <div class="segment-div-nz">
-                        <div class="img" style="background-image:url('images/lighting_controller.jpg'); width:400px; transform: scale(80%);">
-                        </div>
-                        <div style="width: 50%">
-                            <h2 class="sub-text">A custom-built lighting controller for theatre lighting control. The project included a micro-controller system, a custom PCB assembly, 240V wiring, test-and-tag certification, and a sturdy codebase.</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="segment-div-nz" style="width: 40%">
-                <div>
-                    <h1 class="header-text">Warman Design and Build Challenge</h1>
-                    <div class="segment-div-nz">
-                        <div class="img" style="background-image:url('images/warman_design.jpg'); width:400px; transform: scale(80%);">
-                        </div>
-                        <div style="width: 50%">
-                            <h2 class="sub-text">My team's Warman Design Challenge entry: a custom aluminium frame robot with a robust control system and subcontroller architecture, designed by mechanical, software, electrical, and mechatronics students.</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="segment-div-nz" style="width: 40%">
-                <div>
-                    <h1 class="header-text">DIANA Set Electrics</h1>
-                    <div class="segment-div-nz">
-                        <div class="img" style="background-image:url('images/diana_gates.jpg'); width:400px; transform: scale(80%);">
-                        </div>
-                        <div style="width: 50%">
-                            <h2 class="sub-text">An unconventional engineering project for sure - custom lighting solutions for the DIANA: The Musical set. Custom addressable LED strip and bulbs, open-source in-house designed controllers on a redundant network infrastructure.</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="segment-div-nz" style="width: 40%">
-                <div>
-                    <h1 class="header-text">Booster K1 Power Supply</h1>
-                    <div class="segment-div-nz">
-                        <div class="img" style="background-image:url('images/k1_psu.png'); width:400px; transform: scale(80%);">
-                        </div>
-                        <div style="width: 50%">
-                            <h2 class="sub-text">A custom power supply for the Booster K1 robot. This project included the PCB "interposer" module, and the enclosure power supply.</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="segment-div-nz" style="width: 40%">
-                <div>
-                    <h1 class="header-text">Hourglass</h1>
-                    <div class="segment-div-nz">
-                        <div class="img" style="background-image:url('images/hourglass.jpg'); width:400px; transform: scale(80%);">
-                        </div>
-                        <div style="width: 50%">
-                            <h2 class="sub-text">Another interesting and unconventional project for entertainment technology. A fully wireless Hourglass prop which decodes DMX over WiFi and outputs to an addressible LED array. This project was picked up by Core Electronics for an article on Wireless DMX and prop building.</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="segment-div-nz" style="width: 40%">
-                <div>
-                    <h1 class="header-text">OpenFixtures</h1>
-                    <div class="segment-div-nz">
-                        <div class="img" style="background-image:url('images/open_fixtures.jpg'); width:400px; transform: scale(80%);">
-                        </div>
-                        <div style="width: 50%">
-                            <h2 class="sub-text">OpenFixtures: my crazy attempt to make an open-source lighting fixture platform. Another interesting entertainment engineering project.</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="segment-div-nz" style="width: 40%">
-                <div>
-                    <h1 class="header-text">J64</h1>
-                    <div class="segment-div-nz">
-                        <div class="img" style="background-image:url('images/j64.jpg'); width:400px; transform: scale(80%);">
-                        </div>
-                        <div style="width: 50%">
-                            <h2 class="sub-text">A fun little project I did during my work at Jaycar Electronics. A cool custom game console - Raspberry Pi based RetroPie gaming system. 3D printed enclosure, and lots of fun!</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="segment-div-nz" style="width: 40%">
-                <div>
-                    <h1 class="header-text">NUsense</h1>
-                    <div class="segment-div-nz">
-                        <div class="img" style="background-image:url('images/nusense.jpg'); width:400px; transform: scale(80%);">
-                        </div>
-                        <div style="width: 50%">
-                            <h2 class="sub-text">NUsense is the sub-controller for the NUgus soccer robot; the current platform for the University of Newcastle's RoboCup team. While the PCB is not my design, I have been responsible for maintenance and design updates to it.</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <footer>
+            <br style="margin: 50px">
+            <p class="sub-text">This website and the projects within designed without the use of generative AI.</p>
+            <p class="sub-text">All Rights Reserved - Miles Punch 2026.</p>
+            <br style="margin: 20px">
+            <p class="sub-text" style="font-size: 16px;"><em>You don't ever let go of the thread.</em></p>
+            <br style="margin: 20px">
+        </footer>
 
-        <div>
-            <h1 class="big-text">Quick Links:</h1>
-        </div>
+        <script>
+            (function () {
+                var root = document.documentElement;
+                var toggle = document.getElementById('theme-toggle');
+                // Reflect whatever the head script already applied (avoids re-deriving from storage).
+                setTheme(root.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
 
-        <table style="width: 40%; margin-left: auto; margin-right: auto;">
-            <tr>
-                <td><h2 class="sub-text">My main website:</h2></td>
-                <td><a href="https://punchav.com" target="_blank"><h2 class="sub-text"><u>punchav.com</u></h2></a></td>
-            </tr>
-            <tr>
-                <td><h2 class="sub-text">Core Electronics write-up:</h2></td>
-                <td><a href="https://core-electronics.com.au/projects/wled-hourglass-theatre-prop/"><h2 class="sub-text"><u>WLED Hourglass Theatre Prop</u></h2></a></td>
-            </tr>
-            <tr>
-                <td><h2 class="sub-text">GitHub Profile:</h2></td>
-                <td><a href="https://github.com/miles-p" target="_blank"><h2 class="sub-text"><u>github.com/miles-p</u></h2></a></td>
-            </tr>
-            <tr>
-                <td><h2 class="sub-text">NUbots Information:</h2></td>
-                <td><a href="https://www.newcastle.edu.au/college/engineering-science-environment/research/groups/newcastle-robotics-laboratory/nubots" target="_blank"><h2 class="sub-text"><u>NUbots</u></h2></a></td>
-            </tr>
-        </table>
+                function setTheme(theme) {
+                    root.setAttribute('data-theme', theme);
+                    toggle.textContent = theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode';
+                    toggle.setAttribute('aria-pressed', theme === 'light' ? 'true' : 'false');
+                    try {
+                        localStorage.setItem('theme', theme);
+                    } catch (e) { /* storage unavailable, e.g. private browsing */ }
+                }
 
-        <div>
-            <h1 class="big-text">Contact:</h1>
-        </div>
-        <div>
-            <table style="width: 50%; margin-left: auto; margin-right: auto;">
-                <th>
-                    <a href="mailto:miles@punchav.com"><img src="images/email.png" style="width: 100px"></img></a>
-                </th>
-                <th>
-                    <a href="https://www.linkedin.com/in/miles-punch-87907a259/" target="_blank"><img src="images/linkedin.png" style="width: 100px"></img></a>
-                </th>
-                <th>
-                    <a href="https://github.com/miles-p" target="_blank"><img src="images/github.png" style="width: 100px"></img></a>   
-                </th>
-            </table>
-        </div>
-        </div>
-        <br style="margin: 50px">
-        <h2 class="sub-text">This website and the projects within designed without the use of generative AI.</h2>
-        <h2 class="sub-text">All Rights Reserved - Miles Punch 2026.</h2>
-        <br style="margin: 20px">
-        <h2 class="sub-text" style="font-size: 16px;"><em>You don't ever let go of the thread.</em></h2>
-        <br style="margin: 20px">
+                toggle.addEventListener('click', function () {
+                    var current = root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+                    setTheme(current === 'light' ? 'dark' : 'light');
+                });
+            })();
+        </script>
+
+        <script>
+            (function () {
+                var cards = Array.prototype.slice.call(document.querySelectorAll('.project-card'));
+                if (!cards.length) return;
+
+                // Everything outside the dialog, hidden from assistive tech while it's open
+                // (supported browsers only — a no-op elsewhere, harmless either way).
+                var inertTargets = Array.prototype.slice.call(
+                    document.querySelectorAll('body > header, body > main, body > footer')
+                );
+
+                var modal = document.getElementById('project-modal');
+                var modalBox = modal.querySelector('.modal');
+                var modalImg = document.getElementById('modal-img');
+                var modalTitle = document.getElementById('modal-title');
+                var modalDetail = document.getElementById('modal-detail');
+                var closeBtn = document.getElementById('modal-close');
+                var prevBtn = document.getElementById('modal-prev');
+                var nextBtn = document.getElementById('modal-next');
+                var zoomBtn = document.getElementById('modal-zoom');
+                var zoomBtnIcon = zoomBtn.querySelector('span');
+
+                var currentProject = null;
+                var currentImageIndex = 0;
+                var isZoomed = false;
+                var lastFocused = null;
+
+                // Each card's main <img> is photo 1. Extra photos of the SAME project
+                // are added later via data-images="images/foo2.jpg,images/foo3.jpg" and
+                // optionally data-image-alts="alt for foo2,alt for foo3" (comma separated,
+                // matched by position). The carousel arrows page through these photos —
+                // they do not switch between different projects.
+                function projectData(card) {
+                    var img = card.querySelector('img');
+                    var heading = card.querySelector('h3');
+                    var title = heading ? heading.textContent : '';
+                    var extraSrcs = (card.getAttribute('data-images') || '')
+                        .split(',').map(function (s) { return s.trim(); }).filter(Boolean);
+                    var extraAlts = (card.getAttribute('data-image-alts') || '')
+                        .split(',').map(function (s) { return s.trim(); }).filter(Boolean);
+
+                    var images = [{ src: img.getAttribute('src'), alt: img.getAttribute('alt') }];
+                    extraSrcs.forEach(function (src, i) {
+                        images.push({ src: src, alt: extraAlts[i] || (title + ' — photo ' + (i + 2)) });
+                    });
+
+                    return {
+                        title: title,
+                        detail: card.getAttribute('data-detail') || '',
+                        images: images
+                    };
+                }
+
+                function renderImage() {
+                    var image = currentProject.images[currentImageIndex];
+                    modalImg.src = image.src;
+                    modalImg.alt = image.alt;
+                    var hasMultiple = currentProject.images.length > 1;
+                    prevBtn.hidden = !hasMultiple;
+                    nextBtn.hidden = !hasMultiple;
+                }
+
+                function stepImage(delta) {
+                    var count = currentProject.images.length;
+                    currentImageIndex = ((currentImageIndex + delta) % count + count) % count;
+                    renderImage();
+                }
+
+                function getFocusable() {
+                    var all = Array.prototype.slice.call(
+                        modal.querySelectorAll('button, [href], [tabindex]:not([tabindex="-1"])')
+                    );
+                    // Exclude anything not actually rendered right now (the hidden attribute on
+                    // nav buttons for single-photo projects, or display:none via .is-zoomed on
+                    // the nav/copy while zoomed) — such an element can never become
+                    // document.activeElement, so counting it as the trap boundary lets Tab walk
+                    // straight past the modal into whatever's behind it.
+                    return all.filter(function (el) {
+                        return el.offsetParent !== null;
+                    });
+                }
+
+                function trapFocus(event) {
+                    if (event.key !== 'Tab') return;
+                    var focusable = getFocusable();
+                    if (!focusable.length) return;
+                    var first = focusable[0];
+                    var last = focusable[focusable.length - 1];
+                    if (event.shiftKey && document.activeElement === first) {
+                        event.preventDefault();
+                        last.focus();
+                    } else if (!event.shiftKey && document.activeElement === last) {
+                        event.preventDefault();
+                        first.focus();
+                    }
+                }
+
+                function setZoomed(zoomed) {
+                    isZoomed = zoomed;
+                    modalBox.classList.toggle('is-zoomed', zoomed);
+                    zoomBtn.setAttribute('aria-pressed', zoomed ? 'true' : 'false');
+                    zoomBtn.setAttribute('aria-label', zoomed ? 'Exit full size image' : 'View full size image');
+                    zoomBtnIcon.textContent = zoomed ? '⤡' : '⤢';
+                }
+
+                function onKeydown(event) {
+                    if (event.key === 'Escape') {
+                        // Exit full-size zoom first; a second Escape closes the modal itself.
+                        if (isZoomed) {
+                            setZoomed(false);
+                        } else {
+                            closeModal();
+                        }
+                    } else if (event.key === 'ArrowRight') {
+                        stepImage(1);
+                    } else if (event.key === 'ArrowLeft') {
+                        stepImage(-1);
+                    } else {
+                        trapFocus(event);
+                    }
+                }
+
+                var closeTimer = null;
+
+                function onBackdropTransitionEnd(event) {
+                    if (event.target !== modal) return;
+                    finishClose();
+                }
+
+                function finishClose() {
+                    modal.hidden = true;
+                    modal.removeEventListener('transitionend', onBackdropTransitionEnd);
+                    if (closeTimer) {
+                        clearTimeout(closeTimer);
+                        closeTimer = null;
+                    }
+                }
+
+                function openModal(index) {
+                    // Cancel a pending close in case this fires mid-close-transition (rapid re-click).
+                    modal.removeEventListener('transitionend', onBackdropTransitionEnd);
+                    if (closeTimer) {
+                        clearTimeout(closeTimer);
+                        closeTimer = null;
+                    }
+
+                    lastFocused = document.activeElement;
+                    currentProject = projectData(cards[index]);
+                    currentImageIndex = 0;
+                    setZoomed(false);
+                    modalTitle.textContent = currentProject.title;
+                    modalDetail.textContent = currentProject.detail;
+                    renderImage();
+
+                    modal.hidden = false;
+                    void modal.offsetWidth; // force reflow so the class change below actually transitions
+                    modal.classList.add('is-open');
+                    document.body.style.overflow = 'hidden';
+                    inertTargets.forEach(function (el) { el.inert = true; });
+                    closeBtn.focus();
+                    document.addEventListener('keydown', onKeydown);
+                }
+
+                function closeModal() {
+                    inertTargets.forEach(function (el) { el.inert = false; });
+                    setZoomed(false);
+                    modal.classList.remove('is-open');
+                    document.body.style.overflow = '';
+                    document.removeEventListener('keydown', onKeydown);
+                    modal.addEventListener('transitionend', onBackdropTransitionEnd);
+                    // Fallback in case transitionend never fires (e.g. property removed mid-flight).
+                    closeTimer = setTimeout(finishClose, 400);
+                    if (lastFocused && typeof lastFocused.focus === 'function') {
+                        lastFocused.focus();
+                    }
+                }
+
+                // Click handler lives on the card itself: clicking the "View details" button
+                // fires a native click that bubbles up here too, so this one listener covers
+                // both whole-card mouse clicks and the explicit button's mouse/keyboard activation.
+                cards.forEach(function (card, i) {
+                    card.addEventListener('click', function () {
+                        openModal(i);
+                    });
+                });
+
+                prevBtn.addEventListener('click', function () {
+                    stepImage(-1);
+                });
+                nextBtn.addEventListener('click', function () {
+                    stepImage(1);
+                });
+                closeBtn.addEventListener('click', closeModal);
+                zoomBtn.addEventListener('click', function () {
+                    setZoomed(!isZoomed);
+                });
+                modal.addEventListener('click', function (event) {
+                    if (event.target === modal) {
+                        closeModal();
+                    }
+                });
+            })();
+        </script>
     </body>
 </html>
