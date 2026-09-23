@@ -470,6 +470,44 @@ a {
     min-width: 0;
 }
 
+/* ---------- Poem modal ---------- */
+
+.poem-trigger {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    transition: text-decoration-color var(--transition-fast);
+}
+
+.poem-trigger:hover,
+.poem-trigger:focus-visible {
+    text-decoration-color: currentColor;
+}
+
+.modal-poem {
+    max-width: 560px;
+    justify-content: center;
+    text-align: center;
+}
+
+.poem-byline {
+    opacity: 0.7;
+    margin-top: -8px;
+}
+
+.poem-text {
+    white-space: pre-line;
+    line-height: 1.8;
+    margin-top: 20px;
+    font-style: italic;
+}
+
 /* ---------- Motion & responsiveness ---------- */
 
 @media (prefers-reduced-motion: reduce) {
