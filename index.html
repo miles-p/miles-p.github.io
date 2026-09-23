@@ -193,12 +193,31 @@
             </div>
         </div>
 
+        <div class="modal-backdrop" id="poem-modal" hidden>
+            <div class="modal modal-poem" role="dialog" aria-modal="true" aria-labelledby="poem-modal-title">
+                <button type="button" class="modal-close" id="poem-modal-close" aria-label="Close">&times;</button>
+                <div class="modal-copy">
+                    <h3 id="poem-modal-title" class="header-text">The Way It Is</h3>
+                    <p class="sub-text poem-byline">William Stafford</p>
+                    <p class="sub-text poem-text">There&rsquo;s a thread you follow. It goes among
+things that change. But it doesn&rsquo;t change.
+People wonder about what you are pursuing.
+You have to explain about the thread.
+But it is hard for others to see.
+While you hold it you can&rsquo;t get lost.
+Tragedies happen; people get hurt
+or die; and you suffer and get old.
+Nothing you do can stop time&rsquo;s unfolding.
+You don&rsquo;t ever let go of the thread.</p>
+                </div>
+            </div>
+        </div>
+
         <footer>
             <br style="margin: 50px">
-            <p class="sub-text">This website and the projects within designed without the use of generative AI.</p>
             <p class="sub-text">All Rights Reserved - Miles Punch 2026.</p>
             <br style="margin: 20px">
-            <p class="sub-text" style="font-size: 16px;"><em>You don't ever let go of the thread.</em></p>
+            <p class="sub-text" style="font-size: 16px;"><em><button type="button" class="poem-trigger" id="poem-trigger">You don't ever let go of the thread.</button></em></p>
             <br style="margin: 20px">
         </footer>
 
@@ -421,6 +440,92 @@
                 zoomBtn.addEventListener('click', function () {
                     setZoomed(!isZoomed);
                 });
+                modal.addEventListener('click', function (event) {
+                    if (event.target === modal) {
+                        closeModal();
+                    }
+                });
+            })();
+        </script>
+
+        <script>
+            (function () {
+                var trigger = document.getElementById('poem-trigger');
+                var modal = document.getElementById('poem-modal');
+                if (!trigger || !modal) return;
+
+                var closeBtn = document.getElementById('poem-modal-close');
+                var inertTargets = Array.prototype.slice.call(
+                    document.querySelectorAll('body > header, body > main, body > footer')
+                );
+                var lastFocused = null;
+                var closeTimer = null;
+
+                function onKeydown(event) {
+                    if (event.key === 'Escape') {
+                        closeModal();
+                    } else if (event.key === 'Tab') {
+                        var focusable = Array.prototype.slice.call(
+                            modal.querySelectorAll('button, [href], [tabindex]:not([tabindex="-1"])')
+                        );
+                        if (!focusable.length) return;
+                        var first = focusable[0];
+                        var last = focusable[focusable.length - 1];
+                        if (event.shiftKey && document.activeElement === first) {
+                            event.preventDefault();
+                            last.focus();
+                        } else if (!event.shiftKey && document.activeElement === last) {
+                            event.preventDefault();
+                            first.focus();
+                        }
+                    }
+                }
+
+                function onBackdropTransitionEnd(event) {
+                    if (event.target !== modal) return;
+                    finishClose();
+                }
+
+                function finishClose() {
+                    modal.hidden = true;
+                    modal.removeEventListener('transitionend', onBackdropTransitionEnd);
+                    if (closeTimer) {
+                        clearTimeout(closeTimer);
+                        closeTimer = null;
+                    }
+                }
+
+                function openModal() {
+                    modal.removeEventListener('transitionend', onBackdropTransitionEnd);
+                    if (closeTimer) {
+                        clearTimeout(closeTimer);
+                        closeTimer = null;
+                    }
+
+                    lastFocused = document.activeElement;
+                    modal.hidden = false;
+                    void modal.offsetWidth;
+                    modal.classList.add('is-open');
+                    document.body.style.overflow = 'hidden';
+                    inertTargets.forEach(function (el) { el.inert = true; });
+                    closeBtn.focus();
+                    document.addEventListener('keydown', onKeydown);
+                }
+
+                function closeModal() {
+                    inertTargets.forEach(function (el) { el.inert = false; });
+                    modal.classList.remove('is-open');
+                    document.body.style.overflow = '';
+                    document.removeEventListener('keydown', onKeydown);
+                    modal.addEventListener('transitionend', onBackdropTransitionEnd);
+                    closeTimer = setTimeout(finishClose, 400);
+                    if (lastFocused && typeof lastFocused.focus === 'function') {
+                        lastFocused.focus();
+                    }
+                }
+
+                trigger.addEventListener('click', openModal);
+                closeBtn.addEventListener('click', closeModal);
                 modal.addEventListener('click', function (event) {
                     if (event.target === modal) {
                         closeModal();
